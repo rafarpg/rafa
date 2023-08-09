@@ -1,5 +1,6 @@
 <?php
 
+include("conecta.php");
  
 $matricula = $_POST["matricula"];
 $nome  = $_POST["nome"];  
@@ -7,6 +8,10 @@ $nome  = $_POST["nome"];
 $alunos = [];  // Variável usada para guardar os dados acima no formato JSON.
 
 
+$comando = $pdo->prepare("INSERT INTO alunos (matricula, nome) VALUES (?, ?)");
+$resultado = $comando->execute([$matricula, $nome]);
+// Redirecionar para o formulário:
+header("");
 
 // O trecho abaixo pode estar dentro de um WHILE para guardar a resposta de um SELECT por exemplo
 // Neste exemplo estamos apenas devolvendo o que o usuário digitou no formulário
